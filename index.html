@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVP Project</title>
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" /> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* background-color: #f2f2f2; */
+            background-image: url('backgroundImage.jpg');
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #inputImage {
+            align-items: center;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        #inputImageDisplay {
+            margin: 3px solid #000000;
+            border: 2px solid #000000;
+            /* margin-bottom: 20px; */
+        }
+        #outputImage {
+            margin: 3px solid #ffffff;
+            border: 2px solid #000000;
+            margin-bottom: 20px;
+        }
+        #myResult {
+            margin: 3px solid #ffffff;
+            margin-bottom: 20px;
+        }
+        #processImage {
+            align-items: center;
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #processImage[disabled] {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            color: #666666;
+        }
+
+        .versions-container {
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: rgb(0, 30, 255);
+        }
+
+        .input-container {
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        * {box-sizing: border-box;}
+
+        .inputImageDisplay-container {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center; 
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .img-zoom-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; 
+        }
+
+        .img-zoom-lens {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+        .img-zoom-result {
+            border: 1px solid #d4d4d4;
+            border: 2px solid #000000;
+            width: 300px;
+            height: 240px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var inputImage = document.getElementById("inputImage");
+            var processImageBtn = document.getElementById("processImage");
+
+            inputImage.addEventListener("change", function() {
+                if (inputImage.files.length > 0) {
+                    processImageBtn.disabled = false;
+                    processImageBtn.style.backgroundColor = "#4CAF50"; // Green background for enabled button
+                    processImageBtn.style.color = "white"; // White text color for enabled button
+                } else {
+                    processImageBtn.disabled = true;
+                    processImageBtn.style.backgroundColor = "#cccccc"; // Gray background for disabled button
+                    processImageBtn.style.color = "#666666"; // Dark gray text color for disabled button
+                }
+            });
+
+            processImageBtn.addEventListener("click", function() {
+                processImageBtn.disabled = true;
+                processImageBtn.style.backgroundColor = "#cccccc"; // Gray background for disabled button
+                processImageBtn.style.color = "#666666"; // Dark gray text color for disabled button
+            });
+        });
+    </script>
+    <script type = "text/javascript" src="zoom.js"></script> 
+</head>
+<body>
+    <div class="versions-container">
+    We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>.
+    </div>
+
+    <div class="input-container">
+        <input type="file" id="inputImage" style="text-align: center;">
+        <button id="processImage">Process Image</button>
+    </div>
+
+    <div class="inputImageDisplay-container">
+        <img id="inputImageDisplay" width="300" height="240">
+        <br>
+        <label for="inputImageDisplay">Input Image</label>
+    </div>
+
+    <div class="img-zoom-container">
+        <div>
+            <img id="outputImage" width="300" height="240">
+            <br>
+            <label for="outputImage">Output Image</label>
+        </div>
+        <div>
+            <div id="myresult" class="img-zoom-result" width="300" height="240"></div>
+            <br>
+            <label for="myresult">Zoomed Image</label>
+        </div>
+    </div>
+    <!-- <img id="outputImage"> -->
+
+    <script>
+        var img = document.getElementById('outputImage');
+        img.onload = function() {
+            imageZoom("outputImage", "myresult");
+        };
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>

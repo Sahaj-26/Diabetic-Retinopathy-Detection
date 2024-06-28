@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>About the App</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+<body>
+    <h1>This is a desktop application for the IVP project</h1>
+    <h2>Automated Micro-Aneurysm Detection App for Diabetic Retinopathy</h2>
+    <p>Diabetic retinopathy is a serious complication of diabetes that can lead to vision loss if not detected and treated early. Manual examination of eye fundus images for signs of diabetic retinopathy, such as micro-aneurysms, is time-consuming and subjective. To address this, we have developed an automated solution using deep learning techniques.</p>
+    <h3>App Functionality</h3>
+    <p>The app utilizes a deep learning model called MAMC-Net (Multi-Resolution Attention and Multi-Scale Convolution Network) to automatically detect micro-aneurysms in eye fundus images. This model is based on the U-Net architecture and incorporates specialized components to improve accuracy.</p>
+    <h3>Model Architecture</h3>
+    <ul>
+        <li>The MAMC-Net follows an encoder-decoder structure with skip connections.</li>
+        <li>Encoder: Extracts low-level features from input images using convolutional blocks, max-pooling layers, and dropout layers. It generates multi-resolution feature maps to capture global contextual information.</li>
+        <li>Decoder: Utilizes up-convolution layers, multi-resolution attention modules, and multi-scale convolution modules. These components help in accurately segmenting micro-aneurysms by integrating spatial and channel-wise attention and capturing features at multiple scales.</li>
+    </ul>
+    <h3>Multi-Resolution Attention</h3>
+    <p>The Position Attention Module captures spatial inter-dependencies between features. The Channel Attention Module aggregates features across channels to focus on specific semantic features. These modules combine to produce a multi-resolution attention map used for micro-aneurysm detection.</p>
+    <h3>Multi-Scale Convolution</h3>
+    <p>Designed to capture features at multiple scales by combining information from different pooling sizes. Features are processed by separate convolutional layers and upsampled to create a comprehensive representation. This facilitates the accurate segmentation of micro-aneurysms by capturing both global and local information.</p>
+    <h3>How to Use</h3>
+    <ol>
+        <li>Copy the provided model architecture into a file named unet.py.</li>
+        <li>Modify the build_model function in unet.py to return your desired model.</li>
+        <li>Save the model state dict as Model.pt and place it in the Model folder.</li>
+    </ol>
+    <h3>Example Runs and Results</h3>
+    <p>The app's effectiveness is supported by previous research such as "MAMC-Net: an effective deep learning framework for whole-slide image tumor segmentation."</p>
+    <h3>Conclusion</h3>
+    <p>The automated micro-aneurysm detection app offers a promising solution for early diabetic retinopathy detection, potentially preventing vision impairment and blindness.</p>
+</body>
+</html>
